@@ -1,7 +1,7 @@
-var EasyDB = require('easydb');
+var easydb = require('easydb');
 
 // Set the main database config
-EasyDB.setConfig({
+easydb.setConfig({
   host: '127.0.0.1',
   user: 'root',
   password: 'root',
@@ -12,7 +12,7 @@ EasyDB.setConfig({
 
 
 // Find all rows in the 'apps' table where the id is 3280 (should be an array of length 1)
-EasyDB.find({
+easydb.find({
   table: 'apps',
   conditions: {
     id: 3280

@@ -1,5 +1,5 @@
 {
-  "name": "Node-EasyDB",
+  "name": "easydb",
   "version": "0.0.1",
   "description": "Take away the pain of writing SQL statements and running queries.",
   "main": "index.js",
