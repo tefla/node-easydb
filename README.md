@@ -64,12 +64,12 @@ Insert a row to the app_parameters table.
 ```
 easydb.save({
   table: 'app_parameters',
-  fields: [{
+  fields: {
     app_id: 1234,
     key: 'tes'
   }, {
     // etc
-  }]
+  }
 }, function(result) {
   
 });
