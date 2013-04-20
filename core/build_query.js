@@ -73,18 +73,18 @@ exports.buildUpdateSetQuery = function (fields) {
 exports.buildMultiUpdateSetQuery = function (fields, caseKey) {
   var keys = _.keys(fields[0]);
   if (_.isEmpty(keys)) return '';
-  var query = 'SET';
+  var query = 'SET ';
+  var whenArr = [];
   _.each(keys, function (key, index) {
     if (key === caseKey) return;
-    query += ' '+ key + ' = CASE ' + caseKey;
+    var whenSection = key + ' = CASE ' + caseKey;
     _.each(fields, function (field, k2) {
-      query += " WHEN "+SqlString.escape(field[caseKey])+" THEN "+SqlString.escape(field[key]);
+      whenSection += " WHEN "+SqlString.escape(field[caseKey])+" THEN "+SqlString.escape(field[key]);
     });
-    query += ' END';
-    if (index !== keys.length - 1) {
-      query += ',';
-    }
+    whenSection += ' END';
+    whenArr.push(whenSection);
   });
+  query += whenArr.join(', ');
   return query;
 };
 

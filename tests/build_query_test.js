@@ -37,21 +37,35 @@ buster.testCase("Building queries", {
     assert.equals(query, expected);
   },
 
-  "buildMultiUpdateSetQuery - string base key": function () {
-    var fields = [{
-      id: 1,
-      name: 'chris',
-      age: 22,
-      color: 'white'
-    }, {
-      id: 2,
-      name: 'jenna',
-      age: 22,
-      color: 'orange from all the fake tan'
-    }];
-    var query = BuildQuery.buildMultiUpdateSetQuery(fields, 'name');
-    var expected = "SET id = CASE name WHEN 'chris' THEN 1 WHEN 'jenna' THEN 2 END, age = CASE name WHEN 'chris' THEN 22 WHEN 'jenna' THEN 22 END, color = CASE name WHEN 'chris' THEN 'white' WHEN 'jenna' THEN 'orange from all the fake tan' END";
+  "buildMultiUpdateSetQuery - string base key": function() {
+    var fields = [ { name: 'name', type: 'text', helper: 'what\'s your name', id: '3' }, { name: 'age', type: 'text', helper: 'and your age?', id: '4' } ];
+    var query = BuildQuery.buildMultiUpdateSetQuery(fields, 'id');
+    var expected = "SET name = CASE id WHEN '3' THEN 'name' WHEN '4' THEN 'age' END, type = CASE id WHEN '3' THEN 'text' WHEN '4' THEN 'text' END, helper = CASE id WHEN '3' THEN 'what\\'s your name' WHEN '4' THEN 'and your age?' END";
     assert.equals(query, expected);
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
