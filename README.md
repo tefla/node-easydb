@@ -8,6 +8,8 @@ Take away the pain from writing and running SQL queries.
 npm install easydb
 ```
 
+<a href="https://github.com/chrisjhoughton/Node-EasyDB/wiki/Changelog">View the changelog</a>.
+
 
 ## Introduction
 
