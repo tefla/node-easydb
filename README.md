@@ -33,6 +33,27 @@ Right now it supports the majority of standard queries, including:
 * multi-row update queries (different parameters on each)
 
 
+### Connecting to the database
+
+By default, Easydb connects before each query (`find`, `update` etc) and disconnects afterwards. This is done so you 
+don't have to connect/disconnect at the start/end of each request.
+
+If you're wanting to do multiple queries however in one request, then set the parameter `keepOpen: true` in the query:
+
+```
+easydb.find({
+  table: 'users',
+  keepOpen: true
+}
+}, function (rows) {
+  
+});
+```
+
+When you run your regular query further down, just omit the `keepOpen: true` parameter (or set it to false) and then
+Easydb will close the connection after that query.
+
+
 # Usage
 
 ## Find

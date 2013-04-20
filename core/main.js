@@ -53,6 +53,9 @@ exports.find = function(params, cb) {
   if (!params.limit) params.limit = 20;
   query += ' LIMIT ' + params.limit;
 
+  // See if we should keep the connection open
+  config.keepOpen = params.keepOpen;
+
   // Run the query and callback the rows
   db.query(query, config, function(result) {
     cb(result);
