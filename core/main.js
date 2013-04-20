@@ -39,10 +39,10 @@ exports.find = function(params, cb) {
   }
 
   // If joins are specified
-  query += BuildQuery.buildJoinsQuery(params.joins);
+  query += ' ' + BuildQuery.buildJoinsQuery(params.joins);
 
   // Add conditions. 
-  query += BuildQuery.buildConditionsQuery(params.conditions);
+  query += ' '+BuildQuery.buildConditionsQuery(params.conditions);
 
   // Order by
   if (params.order && params.order && params.order.key && params.order.sort) {
@@ -105,7 +105,7 @@ exports.save = function(params, cb) {
   var query = 'INSERT INTO ' + params.table;
 
   // Add insert values
-  query += BuildQuery.buildInsertValuesQuery(params.fields);
+  query += ' ' + BuildQuery.buildInsertValuesQuery(params.fields);
 
   /** run it **/
 
@@ -134,9 +134,9 @@ exports.update = function(params, cb) {
 
   // Add fields to update
   if (_.isArray(params.fields)) {
-    query += BuildQuery.buildMultiUpdateSetQuery(params.fields, params.caseKey);
+    query += ' ' + BuildQuery.buildMultiUpdateSetQuery(params.fields, params.caseKey);
   } else {
-    query += BuildQuery.buildUpdateSetQuery(params.fields);
+    query += ' ' + BuildQuery.buildUpdateSetQuery(params.fields);
   }
 
   // Add conditions (same as in the find - see there for docs)
@@ -169,7 +169,7 @@ exports.remove = function(params, cb) {
   var query = 'DELETE FROM ' + params.table;
 
   // Add conditions (same as in the find - see there for docs)
-  query += BuildQuery.buildConditionsQuery(params.conditions);
+  query += ' ' + BuildQuery.buildConditionsQuery(params.conditions);
 
   // Run the query and callback the rows
   db.query(query, config, function(result) {

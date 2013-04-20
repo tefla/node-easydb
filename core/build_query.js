@@ -13,12 +13,12 @@ exports.buildConditionsQuery = function(conditions) {
         condition_strings.push(key + ' = ' + SqlString.escape(value));
       } else {
         value = _.map(value, function(value_item) {
-          return "'"+SqlString.escape(value_item)+"'";
+          return SqlString.escape(value_item);
         });
         condition_strings.push(key + ' IN (' + value.join(',') + ')');
       }
     });
-    var whereQuery = ' WHERE ' + condition_strings.join(' AND ');
+    var whereQuery = 'WHERE ' + condition_strings.join(' AND ');
     return whereQuery;
   } else {
     return '';
@@ -35,7 +35,7 @@ exports.buildInsertValuesQuery = function (fields) {
   } else {
     keys = _.keys(fields[0]);
   }
-  query += ' (' + keys.join(', ') + ')';
+  query += '(' + keys.join(', ') + ')';
 
   // Get the values out
   query += ' VALUES ';
@@ -73,12 +73,12 @@ exports.buildUpdateSetQuery = function (fields) {
 exports.buildMultiUpdateSetQuery = function (fields, caseKey) {
   var keys = _.keys(fields[0]);
   if (_.isEmpty(keys)) return '';
-  var query = ' SET';
+  var query = 'SET';
   _.each(keys, function (key, index) {
     if (key === caseKey) return;
     query += ' '+ key + ' = CASE ' + caseKey;
     _.each(fields, function (field, k2) {
-      query += " WHEN '"+field[caseKey]+"' THEN "+SqlString.escape(field[key]);
+      query += " WHEN "+SqlString.escape(field[caseKey])+" THEN "+SqlString.escape(field[key]);
     });
     query += ' END';
     if (index !== keys.length - 1) {
