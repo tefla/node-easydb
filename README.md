@@ -1,4 +1,4 @@
-# Node Easy DB - Alpha
+# Node EasyDB (Alpha)
 
 Take away the pain from writing and running SQL queries.
 
@@ -28,7 +28,7 @@ easydb.find({
 I first built this plugin as a way of abstracting messy SQL queries and database connections away from the main application.
 Right now it supports the majority of standard queries, including:
 
-* SELECT, UPDATE, DELETE
+* SELECT, INSERT, UPDATE, DELETE
 * field specification
 * joins
 * order, limits
