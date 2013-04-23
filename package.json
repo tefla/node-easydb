@@ -1,6 +1,6 @@
 {
   "name": "easydb",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Take away the pain of writing SQL statements and running queries.",
   "main": "index.js",
   "scripts": {

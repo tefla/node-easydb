@@ -50,8 +50,9 @@ exports.find = function(params, cb) {
   }
 
   // Limit
-  if (!params.limit) params.limit = 20;
-  query += ' LIMIT ' + params.limit;
+  if (params.limit) {
+    query += ' LIMIT ' + params.limit;
+  }
 
   // See if we should keep the connection open
   config.keepOpen = params.keepOpen;
