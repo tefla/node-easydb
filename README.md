@@ -120,10 +120,10 @@ Update row(s) in the apps table.
 ```
 easydb.update({
   table: 'apps',
-  fields: [{
+  fields: {
     name: 'chris',
     age: 23
-  }],
+  },
   conditions: {
     id: 123
   }

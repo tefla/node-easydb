@@ -32,7 +32,7 @@ exports.find = function(params, cb) {
   }
 
   // Build the query
-  if (!params.fields) {
+  if (!_.isArray(params.fields)) {
     query = 'SELECT * FROM ' + params.table;
   } else {
     query = 'SELECT ' + params.fields.join(', ') + ' FROM ' + params.table;
