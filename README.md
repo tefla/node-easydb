@@ -37,6 +37,20 @@ Right now it supports the majority of standard queries, including:
 
 ### Connecting to the database
 
+Set the config for access to the database:
+
+```
+// Set the main database config
+easydb.setConfig({
+  host: '127.0.0.1',
+  user: 'root',
+  password: 'root',
+  database: 'mydatabase',
+  port: 8889,
+  logQueries: false // set to true if you want to log all queries to the console (good for debugging)
+});
+```
+
 By default, Easydb connects before each query (`find`, `update` etc) and disconnects afterwards. This is done so you 
 don't have to connect/disconnect at the start/end of each request.
 
