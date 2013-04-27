@@ -78,6 +78,7 @@ exports.buildMultiUpdateSetQuery = function (fields, caseKey) {
   var query = 'SET ';
   var whenArr = [];
   _.each(keys, function (key, index) {
+    if (_.isFunction(field)) return;
     if (key === caseKey) return;
     var whenSection = key + ' = CASE ' + caseKey;
     _.each(fields, function (field, k2) {
