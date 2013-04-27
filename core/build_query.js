@@ -9,6 +9,7 @@ exports.buildConditionsQuery = function(conditions) {
   if (conditions && !_.isEmpty(conditions)) {
     var condition_strings = [];
     _.each(conditions, function(value, key) {
+      if (_.isFunction(value)) return;
       if (!_.isArray(value)) {
         condition_strings.push(key + ' = ' + SqlString.escape(value));
       } else {
@@ -64,6 +65,7 @@ exports.buildUpdateSetQuery = function (fields) {
   var query = '';
   var set_arr = [];
   _.each(fields, function(field, key) {
+    if (_.isFunction(field)) return;
     set_arr.push(key + ' = ' + SqlString.escape(field));
   });
   query += ' SET ' + set_arr.join(', ');
@@ -79,6 +81,7 @@ exports.buildMultiUpdateSetQuery = function (fields, caseKey) {
     if (key === caseKey) return;
     var whenSection = key + ' = CASE ' + caseKey;
     _.each(fields, function (field, k2) {
+      if (_.isFunction(field)) return;
       whenSection += " WHEN "+SqlString.escape(field[caseKey])+" THEN "+SqlString.escape(field[key]);
     });
     whenSection += ' END';
