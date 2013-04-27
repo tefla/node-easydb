@@ -73,16 +73,25 @@ exports.buildUpdateSetQuery = function (fields) {
 };
 
 exports.buildMultiUpdateSetQuery = function (fields, caseKey) {
+
+  // Go through all the fields and ensure that functions are removed
+  _.each(fields, function (field, k1) {
+    _.each(field, function (parameter, k2) {
+      if (_.isFunction(parameter)) {
+        delete field[k2];
+      }
+    });
+    fields[k1] = field;
+  });
+
   var keys = _.keys(fields[0]);
   if (_.isEmpty(keys)) return '';
   var query = 'SET ';
   var whenArr = [];
   _.each(keys, function (key, index) {
-    if (_.isFunction(field)) return;
     if (key === caseKey) return;
     var whenSection = key + ' = CASE ' + caseKey;
     _.each(fields, function (field, k2) {
-      if (_.isFunction(field)) return;
       whenSection += " WHEN "+SqlString.escape(field[caseKey])+" THEN "+SqlString.escape(field[key]);
     });
     whenSection += ' END';
