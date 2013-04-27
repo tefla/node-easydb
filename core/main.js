@@ -141,7 +141,7 @@ exports.update = function(params, cb) {
   }
 
   // Add conditions (same as in the find - see there for docs)
-  query += BuildQuery.buildConditionsQuery(params.conditions);
+  query += ' ' + BuildQuery.buildConditionsQuery(params.conditions);
 
   /** run it **/
 
