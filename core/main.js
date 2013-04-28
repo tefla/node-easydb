@@ -50,7 +50,7 @@ exports.find = function(params, cb) {
   }
 
   // Limit
-  if (params.limit) {
+  if (params.limit || params.type === 'first') {
     query += ' LIMIT ' + params.limit;
   }
 
@@ -59,7 +59,11 @@ exports.find = function(params, cb) {
 
   // Run the query and callback the rows
   db.query(query, config, function(result) {
-    cb(result);
+    if (params.type === 'first') {
+      cb(result[0]);
+    } else {
+      cb(result);
+    }
   });
 
 };
