@@ -1,6 +1,6 @@
 {
   "name": "easydb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Take away the pain of writing SQL statements and running queries.",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,7 @@
   ],
   "dependencies": {
     "mysql": "2.x.x",
-    "lodash": "1.0.1",
-    "buster": "0.6.x"
+    "lodash": "1.0.1"
   },
   "author": "Chris Houghton",
   "license": "BSD",
