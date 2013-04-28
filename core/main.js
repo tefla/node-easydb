@@ -50,7 +50,8 @@ exports.find = function(params, cb) {
   }
 
   // Limit
-  if (params.limit || params.type === 'first') {
+  if (params.type === 'first') params.limit = 1;
+  if (params.limit) {
     query += ' LIMIT ' + params.limit;
   }
 
