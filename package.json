@@ -18,7 +18,8 @@
   ],
   "dependencies": {
     "mysql": "2.x.x",
-    "lodash": "1.0.1"
+    "lodash": "1.0.1",
+    "async": "x.x.x"
   },
   "author": "Chris Houghton",
   "license": "BSD",
